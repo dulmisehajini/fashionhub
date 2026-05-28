@@ -6,13 +6,15 @@ import 'features/products/products_screen.dart';
 import 'features/wishlist/wishlist_screen.dart';
 import 'features/profile/profile_screen.dart';
 import 'features/cart/cart_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'features/auth/login_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(const FashionHubApp());
+  runApp(const ProviderScope(child: FashionHubApp()));
 }
 
 class FashionHubApp extends StatelessWidget {
@@ -24,7 +26,10 @@ class FashionHubApp extends StatelessWidget {
       title: 'FashionHub',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const MainNavigation(),
+      home: const LoginScreen(),
+        routes: {
+        '/home': (context) => const MainNavigation(),
+      },
     );
   }
 }
